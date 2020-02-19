@@ -1,0 +1,11 @@
+<ul class='task-list' *ngIf='tasks'>
+    <li *ngFor='let task of tasks' class='task-item'>
+        <h2>{{task.title}}</h2>
+        <span>{{task.date}}</span>
+        <p>{{task.description}}</p>
+        <div class='btn-wrapper'>
+          <button type='button' class='delete btn btn-outline-danger' (click)='onDeleteTask(task.id)'>Delete</button>
+          <button type='button' class='btn btn-outline-primary' (click)='onCompleteTask(task.id)' [ngClass]='{done: task.done === true}'>{{task.done ? 'Completed' : 'Mark as complete'}}</button>
+        </div>
+    </li>
+</ul>
