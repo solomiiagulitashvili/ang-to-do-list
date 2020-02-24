@@ -1,8 +1,26 @@
-.add-btn {
-    color: var(--green);
-    border-color: var(--green);
-    &:hover {
-        background-color: var(--green);
-        color: white;
-    }
+.add-task-btn {
+	color: var(--green);
+	border-color: var(--green);
+	&:hover {
+			background-color: var(--green);
+			color: white;
+	}
 }
+
+form {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	input.ng-invalid.ng-touched,
+	textarea.ng-invalid.ng-touched {
+		border: 1px solid red;
+	}
+	.help-block {
+		font-size: 12px;
+		color: var(--gray);
+	}
+	.add-btn {
+		margin-top: 20px;
+	}
+}
+

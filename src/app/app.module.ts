@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { TaskListComponent } from './task-list/task-list.component';
 import { AddTaskComponent } from './add-task/add-task.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { TaskItemComponent } from './task-list/task-item/task-item.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     TaskListComponent,
-    AddTaskComponent
+    AddTaskComponent,
+    TaskItemComponent
   ],
   imports: [
     BrowserModule,
