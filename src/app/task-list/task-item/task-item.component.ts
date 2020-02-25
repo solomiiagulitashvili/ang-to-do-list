@@ -14,6 +14,6 @@ export class TaskItemComponent {
     // output
   }
   onCompleteTask(id) {
-    // output
+    
   }
 }
