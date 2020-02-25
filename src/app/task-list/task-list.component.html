@@ -1,4 +1,3 @@
-<!-- <ul class='task-list' *ngIf='tasks'>
-    <task-item-compoment *ngFor='let task of tasks' [task]='task' class='task-item'>
-    </task-item-compoment>
-</ul> -->
+<ng-container *ngFor='let task of tasks | async'>
+    <app-task-item [task]='task'></app-task-item>
+</ng-container>

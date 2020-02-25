@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Task } from './task';
+import { ITask } from '../interfaces/task-interface';
 import nanoid from 'nanoid';
-import { NgForm } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 
 
@@ -13,21 +13,22 @@ import { NgForm } from '@angular/forms';
   providers: [NgbModalConfig, NgbModal]
 })
 export class AddTaskComponent implements OnInit {
-  @ViewChild('f') addTaskForm: NgForm; 
-  // title:string = '';
-  // description:string = '';
-  // existantTasks = [];
-  task: Task = {
-    title: '',
-    description: '',
-    id: nanoid(),
-    done: false,
-    date: new Date().toLocaleString()
-  }
-
+  form: FormGroup = new FormGroup({
+    title: new FormControl('', [Validators.required]),
+    description: new FormControl('', [Validators.required]),
+    // id: nanoid(),
+    // date: new Date().toLocaleString(),
+    // done: false
+  });
+  tasks: ITask[] = [];
   constructor(config: NgbModalConfig, private modalService: NgbModal) {
     config.backdrop = 'static';
     config.keyboard = false;
+
+    // this.form.patchValue({
+    //   title: 'title',
+    //   description: 'description',
+    // })
   }
 
   open(content) {
@@ -35,29 +36,17 @@ export class AddTaskComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.addTaskForm);
-    // this.addTaskForm.reset();
-    
+    let existantTask = JSON.parse(localStorage.getItem('tasks'));
+    if (existantTask) {
+      this.tasks = existantTask;
+    }
+    this.form.value.id = nanoid();
+    this.form.value.date = new Date().toLocaleString();
+    this.form.value.done = false;
+    this.tasks.push(this.form.value);
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
+    console.log(this.form.value);
   }
-
-  // onSubmit(form: NgForm) {
-  //   console.log(form);
-  // }
-  // addTask() {
-  //   let tasks: Task[] = [
-  //     {
-  //       title: this.title,
-  //       description: this.description,
-  //       id: nanoid(),
-  //       done: false,
-  //       date: new Date().toISOString().slice(0,10),
-  //     }
-  //   ];
-  //   let existant = JSON.parse(localStorage.getItem('task'));
-  //   this.existantTasks = existant === null ? [] : existant;
-  //   this.existantTasks.push(tasks[0]);
-  //   localStorage.setItem('task', JSON.stringify(this.existantTasks));
-  // }
 
   ngOnInit(): void {
   }

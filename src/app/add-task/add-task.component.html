@@ -6,41 +6,26 @@
     </button>
   </div>
   <div class="modal-body">
-    <form (ngSubmit)='onSubmit()' #f='ngForm'>
-      <label for='title'>Title</label>
-      <input
-        type='text'
-        id='title'
-        class='form-control'
-        ngModel
-        name='title'
-        required
-        #title='ngModel'
-        >
-      <span class='help-block' *ngIf='!title.valid && title.touched'>Title should not be empty!</span>
-      <label for='description'>Description</label>
-      <textarea 
-      type='text'
-      id='description'
-      class='form-control'
-      ngModel
-      name='description'
-      required
-      #descr='ngModel'
-      >
-      </textarea>
-      <span class='help-block' *ngIf='!descr.valid && descr.touched'>Please add a description.</span>
-      <button type="submit" class="btn btn-outline-dark add-btn" [disabled]='!f.valid' >Add</button>
+    <form (ngSubmit)="onSubmit()" [formGroup]="form">
+        <label for='title'>Title</label>
+        <input
+          id='title'
+          class='form-control'
+          formControlName="title"
+          >
+        <label for='description'>Description</label>
+        
+        <textarea 
+          type='text'
+          formControlName="description"
+          id='description'
+          class='form-control'
+          >
+        </textarea>
+      
+      <button type="submit" class="btn btn-outline-dark add-btn" [disabled]='form.invalid' >Add</button>
+      <button type='button' class="btn btn-outline-dark add-btn close-modal" [disabled]='form.invalid' (click)="c('Save click')"></button>
     </form>
-    <!-- <label for='title'>Title
-			<input type='text' id='title' [(ngModel)]='title'>
-		</label>
-		<label for='description'>Description
-			<input type='text' id='description' [(ngModel)]='description'>
-		</label>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="c('Save click'); addTask()">Add</button> -->
   </div>
 </ng-template>
 
