@@ -1,0 +1,29 @@
+[33mcommit d69ed25860258ae8b1c7e556797c00a07bb1f38f[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: Solomiia Gulitashvili <s.gulitashvili@levi9.com>
+Date:   Tue Feb 25 17:43:07 2020 +0200
+
+    list of tasks styled, subscription corrected
+
+[33mcommit ad6e9327ff49a53d22b0b13946dc49881a7f6351[m
+Author: Solomiia Gulitashvili <s.gulitashvili@levi9.com>
+Date:   Tue Feb 25 16:02:48 2020 +0200
+
+    form changed to reactive, data saved in observable
+
+[33mcommit a711c03b73f4dfdec28dcaebfa48792d87d5fb68[m
+Author: Solomiia Gulitashvili <s.gulitashvili@levi9.com>
+Date:   Mon Feb 24 17:48:17 2020 +0200
+
+    form for adding a task created
+
+[33mcommit d19d8e0df44fc74d0223b09959438eb4d79fb316[m
+Author: Solomiia Gulitashvili <s.gulitashvili@levi9.com>
+Date:   Wed Feb 19 16:34:21 2020 +0200
+
+    getting and setting data to local storage
+
+[33mcommit 1af68fe4a308eb837d96805b77b7f9563c5d2225[m
+Author: Solomiia Gulitashvili <s.gulitashvili@levi9.com>
+Date:   Mon Feb 17 15:15:38 2020 +0200
+
+    initial commit
