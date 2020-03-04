@@ -1,10 +1,8 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ITask } from '../interfaces/task-interface';
-import nanoid from 'nanoid';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { TaskService } from '../task.service';
-
 
 
 @Component({
@@ -17,9 +15,6 @@ export class AddTaskComponent implements OnInit {
   form: FormGroup = new FormGroup({
     title: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
-    // id: nanoid(),
-    // date: new Date().toLocaleString(),
-    // done: false
   });
   tasks: ITask[] = [];
   constructor(config: NgbModalConfig, private modalService: NgbModal, private taskService: TaskService) {
@@ -37,16 +32,8 @@ export class AddTaskComponent implements OnInit {
   }
 
   onSubmit() {
-    let existantTask = JSON.parse(localStorage.getItem('tasks'));
-    if (existantTask) {
-      this.tasks = existantTask;
-    }
-    this.form.value.id = nanoid();
-    this.form.value.date = new Date().toLocaleString();
-    this.form.value.done = false;
-    this.tasks.push(this.form.value);
-    localStorage.setItem('tasks', JSON.stringify(this.tasks));
-    console.log(this.form.value, this.tasks);
+    this.taskService.setItem(this.form.value.id, this.form.value.date, this.form.value.done, this.form.value);
+    this.tasks = this.taskService.getItem();
     this.taskService.updateTasks(this.tasks);
   }  
 

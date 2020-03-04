@@ -15,7 +15,9 @@ export class AppComponent implements OnInit {
   title = 'ang-to-do-list';
   tasks: ITask[];
  
-  constructor(private taskService: TaskService) {}
+  constructor(private taskService: TaskService) {
+    
+  }
 
   ngOnInit() {
     this.taskService.tasks$.subscribe((data) => {
