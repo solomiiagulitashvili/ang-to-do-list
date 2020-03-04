@@ -1,6 +1,7 @@
-import { Component, Output, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ITask } from './interfaces/task-interface';
 import { Observable, Subscription } from 'rxjs';
+import { TaskService } from './task.service';
 
 
 @Component({
@@ -8,26 +9,20 @@ import { Observable, Subscription } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, OnDestroy{
+
+export class AppComponent implements OnInit {
   @Input() id: ITask['id'];
   title = 'ang-to-do-list';
-  subscription: Subscription;
-
-  tasks$: Observable<ITask[]> = new Observable((subscriber) => {
-    let exTasks = JSON.parse(localStorage.getItem('tasks'));
-    subscriber.next(exTasks);
-  })
+  tasks: ITask[];
+ 
+  constructor(private taskService: TaskService) {}
 
   ngOnInit() {
-    this.subscription = this.tasks$.subscribe((data) => {
+    this.taskService.tasks$.subscribe((data) => {
+      this.tasks = data;
       console.log(data);
     })
   }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
-
   onDeleteHandler(id: string) {
    
   }

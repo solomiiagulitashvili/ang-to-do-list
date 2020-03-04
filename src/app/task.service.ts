@@ -1,25 +1,24 @@
-// import { Injectable, OnInit, Input } from '@angular/core';
-// import { ITask } from './interfaces/task-interface';
-// import { Subject, Observable } from 'rxjs';
+import { Injectable, Input, OnInit } from '@angular/core';
+import { ITask } from './interfaces/task-interface';
+import { BehaviorSubject, Observable } from 'rxjs';
 
-// @Injectable({
-//   providedIn: 'root'
-// })
-// export class TaskService implements OnInit {
-//   tasks: ITask[];
-//   private tasksSubject = new Subject<ITask[]>();
-//   watchTasks(): Observable<ITask[]> {
-//     return this.tasksSubject.asObservable();
-//   }
+@Injectable({
+  providedIn: 'root'
+})
+export class TaskService implements OnInit {
 
-//   constructor() {
-//     this.watchTasks().next(this.tasks);
-//   }
-  
+	private existantTasks: ITask[];
 
+	ngOnInit(): void {
+		this.existantTasks = JSON.parse(localStorage.getItem('tasks'));
+		console.log(this.existantTasks);
+	}
+	
+  private tasksSubject = new BehaviorSubject<ITask[]>(this.existantTasks);
+  tasks$ = this.tasksSubject.asObservable();
 
-//   ngOnInit() {
-   
-//   }
+	updateTasks(tasks) {
+		this.tasksSubject.next(tasks);
+	}
 
-// }
+}

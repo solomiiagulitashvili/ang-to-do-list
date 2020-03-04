@@ -3,6 +3,7 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ITask } from '../interfaces/task-interface';
 import nanoid from 'nanoid';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { TaskService } from '../task.service';
 
 
 
@@ -21,7 +22,7 @@ export class AddTaskComponent implements OnInit {
     // done: false
   });
   tasks: ITask[] = [];
-  constructor(config: NgbModalConfig, private modalService: NgbModal) {
+  constructor(config: NgbModalConfig, private modalService: NgbModal, private taskService: TaskService) {
     config.backdrop = 'static';
     config.keyboard = false;
 
@@ -45,8 +46,9 @@ export class AddTaskComponent implements OnInit {
     this.form.value.done = false;
     this.tasks.push(this.form.value);
     localStorage.setItem('tasks', JSON.stringify(this.tasks));
-    console.log(this.form.value);
-  }
+    console.log(this.form.value, this.tasks);
+    this.taskService.updateTasks(this.tasks);
+  }  
 
   ngOnInit(): void {
   }

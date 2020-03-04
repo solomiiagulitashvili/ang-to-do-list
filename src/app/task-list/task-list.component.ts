@@ -1,5 +1,6 @@
 import { Component, Input, Output } from '@angular/core';
 import { ITask } from '../interfaces/task-interface';
+import { TaskService } from '../task.service';
 
 @Component({
   selector: 'app-task-list',
@@ -8,6 +9,8 @@ import { ITask } from '../interfaces/task-interface';
 })
 
 export class TaskListComponent {
-  @Input() tasks: Promise<any>;
+  @Input() tasks: ITask[];
   @Output() id: ITask['id'];
+
+  
 }
