@@ -12,5 +12,4 @@ export class TaskListComponent {
   @Input() tasks: ITask[];
   @Output() id: ITask['id'];
 
-  
 }

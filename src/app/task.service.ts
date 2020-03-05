@@ -6,13 +6,12 @@ import nanoid from 'nanoid';
 @Injectable({
   providedIn: 'root'
 })
-export class TaskService implements OnInit {
-
+export class TaskService {
 	private tasks: ITask[];
-
-	ngOnInit(): void {
-		this.tasks = JSON.parse(localStorage.getItem('tasks'));
-		console.log(this.tasks);
+	constructor() {
+		this.tasks$.subscribe((data) => {
+			this.tasks = data
+		})
 	}
 
 	setItem(id, date, done, form) {
@@ -34,12 +33,27 @@ export class TaskService implements OnInit {
 		return this.tasks
 	}
 	
-  private tasksSubject = new BehaviorSubject<ITask[]>(this.tasks);
+  private tasksSubject = new BehaviorSubject<ITask[]>(JSON.parse(localStorage.getItem('tasks')));
 	tasks$ = this.tasksSubject.asObservable();
 	
-
 	updateTasks(tasks) {
 		this.tasksSubject.next(tasks);
+	}
+
+	deleteTask(id) {
+		this.tasks = this.tasks.filter((task) => {
+			return task.id !== id
+		})
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
+		this.updateTasks(this.tasks)
+	}
+	completeTask(id) {
+		let completed = this.tasks.find((task) => {
+			return task.id == id
+		})
+		completed.done = true;
+		localStorage.setItem('tasks', JSON.stringify(this.tasks))
+		this.updateTasks(this.tasks)
 	}
 
 }

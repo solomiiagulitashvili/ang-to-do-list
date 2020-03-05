@@ -1,5 +1,7 @@
 import { Component, Input, Output } from '@angular/core';
 import { ITask } from 'src/app/interfaces/task-interface';
+import { TaskService } from 'src/app/task.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-task-item',
@@ -8,12 +10,14 @@ import { ITask } from 'src/app/interfaces/task-interface';
 })
 export class TaskItemComponent {
   @Input() task: ITask;
-  @Output() id: ITask['id'];
+  tasks: Observable<ITask[]>;
+  
+  constructor(private taskService: TaskService) {}
 
   onDeleteTask(id) {
-    // output
+    this.taskService.deleteTask(id);
   }
   onCompleteTask(id) {
-    
+    this.taskService.completeTask(id);
   }
 }

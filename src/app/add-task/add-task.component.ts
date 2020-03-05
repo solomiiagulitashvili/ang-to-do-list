@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ITask } from '../interfaces/task-interface';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -11,7 +11,7 @@ import { TaskService } from '../task.service';
   styleUrls: ['./add-task.component.scss'],
   providers: [NgbModalConfig, NgbModal]
 })
-export class AddTaskComponent implements OnInit {
+export class AddTaskComponent {
   form: FormGroup = new FormGroup({
     title: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
@@ -36,8 +36,4 @@ export class AddTaskComponent implements OnInit {
     this.tasks = this.taskService.getItem();
     this.taskService.updateTasks(this.tasks);
   }  
-
-  ngOnInit(): void {
-  }
-
 }
