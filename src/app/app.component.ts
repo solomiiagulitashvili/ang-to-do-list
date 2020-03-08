@@ -1,7 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ITask } from './interfaces/task-interface';
-import { Observable, Subscription } from 'rxjs';
-import { TaskService } from './task.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -9,16 +6,10 @@ import { TaskService } from './task.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  @Input() id: ITask['id'];
-  title = 'ang-to-do-list';
-  tasks: ITask[];
- 
-  constructor(private taskService: TaskService) {}
+
+  constructor() {}
 
   ngOnInit() {
-    this.taskService.tasks$.subscribe((data) => {
-      this.tasks = data;
-      console.log(data);
-    })
+    
   }
 }

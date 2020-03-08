@@ -51,9 +51,19 @@ export class TaskService {
 		let completed = this.tasks.find((task) => {
 			return task.id == id
 		})
-		completed.done = true;
+		if (!completed.done) {
+			completed.done = true;
+		} else {
+			completed.done = false;
+		}
 		localStorage.setItem('tasks', JSON.stringify(this.tasks))
 		this.updateTasks(this.tasks)
+	}
+	getTask(id) {
+		let task = this.tasks.find((task) => {
+			return task.id == id
+		})
+		return task;
 	}
 
 }

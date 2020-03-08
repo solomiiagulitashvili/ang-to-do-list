@@ -1,5 +1,10 @@
 <div class='task-item'>
-	<h2>{{task.title}}</h2>
+	<div class='wrapper'>
+		<h2>{{task.title}}</h2>
+	<a [routerLink]="['task', task.id]" routerLinkActive="active">
+		<img src="../../../assets/pen.svg" width="25px" height="25px">
+	</a>
+	</div>
 	<span>{{task.date}}</span>
 	<p>{{task.description}}</p>
 	<div class='btn-wrapper'>

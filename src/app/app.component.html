@@ -1,7 +1,5 @@
 <div class='main'>
-	<h1 class='header'>To-do List</h1>
-<div class='wrapper'>
-	<app-task-list class='task-list' [tasks]="tasks"></app-task-list>
-	<app-add-task class='add-task'></app-add-task>
+	<h1 class='header' routerLink="/" routerLinkActive="active">To-do List</h1>
+	<router-outlet></router-outlet>
 </div>
-</div>
+
