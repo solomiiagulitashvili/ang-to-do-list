@@ -16,7 +16,6 @@ export class TaskItemComponent implements OnInit {
   id: string;
   public url: string;
   
-<<<<<<< HEAD
   constructor(private taskService: TaskService, public route: ActivatedRoute, public router: Router) {
     // this.task = {
     //   title: '',
@@ -25,16 +24,6 @@ export class TaskItemComponent implements OnInit {
     //   done: false,
     //   date: '',
     // }
-=======
-  constructor(private taskService: TaskService, private route: ActivatedRoute, private router: Router) {
-    this.task = {
-      title: '',
-      description: '',
-      id: '',
-      done: false,
-      date: '',
-    }
->>>>>>> master
   }
 
   onDeleteTask(id) {
