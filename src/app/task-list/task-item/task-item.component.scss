@@ -1,4 +1,8 @@
-.task-item {
+.wrapper-all {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .task-item {
     border: 1px solid rgba(#343a40, 0.45);
     border-radius: 10px;
     padding: 20px;
@@ -15,8 +19,18 @@
       .btn {
         margin-left: 10px;
       }
+      .save-changes-btn {
+        color: var(--green);
+        border-color: var(--green);
+        &:hover {
+            background-color: var(--green);
+            color: white;
+        }
+      }
 		}
 }
+}
+
 .done {
   background-color: #007bff;
   color: white;

@@ -2,7 +2,7 @@ import { Component, Input, Output, OnInit } from '@angular/core';
 import { ITask } from 'src/app/interfaces/task-interface';
 import { TaskService } from 'src/app/task.service';
 import { Observable, Subscription } from 'rxjs';
-import { ActivatedRoute, Router, Params } from '@angular/router';
+import { ActivatedRoute, Router, Params, UrlSegment } from '@angular/router';
 
 @Component({
   selector: 'app-task-item',
@@ -14,9 +14,9 @@ export class TaskItemComponent implements OnInit {
   tasks: ITask[];
   paramsSubscription: Subscription;
   id: string;
-  // tasks: Observable<ITask[]>;
+  public url: string;
   
-  constructor(private taskService: TaskService, private route: ActivatedRoute, private router: Router) {
+  constructor(private taskService: TaskService, public route: ActivatedRoute, public router: Router) {
     // this.task = {
     //   title: '',
     //   description: '',
@@ -42,6 +42,10 @@ export class TaskItemComponent implements OnInit {
           this.task = this.taskService.getTask(this.id)
         }
       )
+      this.url = this.router.url;
     } 
+  }
+  onSaveChanges(id) {
+    this.taskService.onSaveChanges(id)
   }
 }

@@ -17,9 +17,14 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.taskService.tasks$.subscribe((data) => {
+     
+      // this.tasks = data.sort(function(a, b) {
+      //   let c:any = new Date(a.date);
+      //   let d:any = new Date(b.date);
+      //   return c - d;
       this.tasks = data;
-      console.log(data);
-    })
+      console.log(this.tasks)
+    });
   }
 }
 

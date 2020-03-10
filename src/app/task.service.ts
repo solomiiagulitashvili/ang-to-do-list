@@ -65,5 +65,19 @@ export class TaskService {
 		})
 		return task;
 	}
+	onSaveChanges(id) {
+		// let changed = this.tasks.find((task) => {
+		// 	return task.id == id
+		// })
+		// let title = document.querySelector('.task-title');
+		// let description = document.querySelector('.task-description');
+		// console.log(changed)
+		// changed.title = title.innerHTML;
+		// changed.description = description.innerHTML;
+		// let saved = document.querySelector('.save-changes-btn');
+		// saved.innerHTML = 'Saved!';
+		// localStorage.setItem('tasks', JSON.stringify(this.tasks))
+		// this.updateTasks(this.tasks)
+	}
 
 }

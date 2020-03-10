@@ -1,15 +1,19 @@
-<div class='task-item'>
-	<div class='wrapper'>
-		<h2>{{task.title}}</h2>
-	<a [routerLink]="['task', task.id]" routerLinkActive="active">
-		<img src="../../../assets/pen.svg" width="25px" height="25px">
-	</a>
-	</div>
-	<span>{{task.date}}</span>
-	<p>{{task.description}}</p>
-	<div class='btn-wrapper'>
-		<button type='button' class='delete btn btn-outline-danger' (click)='onDeleteTask(task.id)'>Delete</button>
-		<button type='button' class='btn btn-outline-primary' (click)='onCompleteTask(task.id)' [ngClass]='{done: task.done === true}'
-			>{{task.done ? 'Completed' : 'Mark as complete'}}</button>
+<div class='wrapper-all'>
+	<div class='task-item'>
+		<div class='wrapper'>
+			<h2 contenteditable="true" class='task-title'>{{task.title}}</h2>
+			<a [routerLink]="['task', task.id]" routerLinkActive="active">
+				<img src="../../../assets/pen.svg" width="25px" height="25px">
+			</a>
+		</div>
+		<span>{{task.date}}</span>
+		<p contenteditable="true" class='task-description'>{{task.description}}</p>
+		<div class='btn-wrapper'>
+			<button type='button' class='delete btn btn-outline-danger' (click)='onDeleteTask(task.id)'>Delete</button>
+			<button type='button' class='btn btn-outline-primary' (click)='onCompleteTask(task.id)' [ngClass]='{done: task.done === true}'
+				>{{task.done ? 'Completed' : 'Mark as complete'}}</button>
+			<button type='button' class='btn btn-outline-primary save-changes-btn' *ngIf="url" (click)='onSaveChanges(task.id)'>Save changes</button>
+		</div>
 	</div>
 </div>
+
