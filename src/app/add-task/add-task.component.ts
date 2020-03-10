@@ -15,6 +15,10 @@ export class AddTaskComponent {
   form: FormGroup = new FormGroup({
     title: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
+    // id: new FormControl(''),
+    // date: new FormControl(''),
+    // done: new FormControl(false)
+
   });
   tasks: ITask[] = [];
   constructor(config: NgbModalConfig, private modalService: NgbModal, private taskService: TaskService) {

@@ -19,10 +19,11 @@ export class TaskService {
     if (existantTask) {
       this.tasks = existantTask;
     }
-    id = nanoid();
-    date = new Date().toLocaleString();
-    done = false;
-    this.tasks.push(form);
+    form.id = nanoid();
+    form.date = new Date().toLocaleString();
+    form.done = false;
+		this.tasks.push(form);
+		console.log(form)
     localStorage.setItem('tasks', JSON.stringify(this.tasks));
 		return (
 			this.tasks

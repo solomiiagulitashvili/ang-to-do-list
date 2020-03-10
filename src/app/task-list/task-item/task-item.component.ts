@@ -17,13 +17,13 @@ export class TaskItemComponent implements OnInit {
   // tasks: Observable<ITask[]>;
   
   constructor(private taskService: TaskService, private route: ActivatedRoute, private router: Router) {
-    // this.task = {
-    //   title: '',
-    //   description: '',
-    //   id: '',
-    //   done: false,
-    //   date: '',
-    // }
+    this.task = {
+      title: '',
+      description: '',
+      id: '',
+      done: false,
+      date: '',
+    }
   }
 
   onDeleteTask(id) {
