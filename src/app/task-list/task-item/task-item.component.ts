@@ -1,13 +1,13 @@
-import { Component, Input, Output, OnInit } from '@angular/core';
-import { ITask } from 'src/app/interfaces/task-interface';
-import { TaskService } from 'src/app/task.service';
-import { Observable, Subscription } from 'rxjs';
-import { ActivatedRoute, Router, Params, UrlSegment } from '@angular/router';
+import { Component, Input, Output, OnInit } from "@angular/core";
+import { ITask } from "src/app/interfaces/task-interface";
+import { TaskService } from "src/app/task.service";
+import { Observable, Subscription } from "rxjs";
+import { ActivatedRoute, Router, Params, UrlSegment } from "@angular/router";
 
 @Component({
-  selector: 'app-task-item',
-  templateUrl: './task-item.component.html',
-  styleUrls: ['./task-item.component.scss']
+  selector: "app-task-item",
+  templateUrl: "./task-item.component.html",
+  styleUrls: ["./task-item.component.scss"]
 })
 export class TaskItemComponent implements OnInit {
   @Input() task: ITask;
@@ -15,8 +15,12 @@ export class TaskItemComponent implements OnInit {
   paramsSubscription: Subscription;
   id: string;
   public url: string;
-  
-  constructor(private taskService: TaskService, public route: ActivatedRoute, public router: Router) {
+
+  constructor(
+    private taskService: TaskService,
+    public route: ActivatedRoute,
+    public router: Router
+  ) {
     // this.task = {
     //   title: '',
     //   description: '',
@@ -33,19 +37,26 @@ export class TaskItemComponent implements OnInit {
     this.taskService.completeTask(id);
   }
   ngOnInit() {
-    this.id = this.route.snapshot.params['id'];
+    this.id = this.route.snapshot.params["id"];
     if (this.id) {
-      this.paramsSubscription = this.route.params
-      .subscribe(
+      this.paramsSubscription = this.route.params.subscribe(
         (params: Params) => {
-          this.id = params['id']
-          this.task = this.taskService.getTask(this.id)
+          this.id = params["id"];
+          this.task = this.taskService.getTask(this.id);
         }
-      )
+      );
       this.url = this.router.url;
-    } 
+    }
   }
   onSaveChanges(id) {
-    this.taskService.onSaveChanges(id)
+    this.taskService.onSaveChanges(id);
+  }
+  onAddProgress(id) {
+    this.taskService.addProgress(id);
+    console.log(this.task.progress);
+  }
+  onRemoveProgress(id) {
+    this.taskService.removeProgress(id);
+    console.log(this.task.progress);
   }
 }
