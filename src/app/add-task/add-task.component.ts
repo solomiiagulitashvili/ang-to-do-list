@@ -1,28 +1,30 @@
-import { Component } from '@angular/core';
-import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ITask } from '../interfaces/task-interface';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { TaskService } from '../task.service';
-
+import { Component } from "@angular/core";
+import { NgbModalConfig, NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { ITask } from "../interfaces/task-interface";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { TaskService } from "../task.service";
 
 @Component({
-  selector: 'app-add-task',
-  templateUrl: './add-task.component.html',
-  styleUrls: ['./add-task.component.scss'],
+  selector: "app-add-task",
+  templateUrl: "./add-task.component.html",
+  styleUrls: ["./add-task.component.scss"],
   providers: [NgbModalConfig, NgbModal]
 })
 export class AddTaskComponent {
   form: FormGroup = new FormGroup({
-    title: new FormControl('', [Validators.required]),
-    description: new FormControl('', [Validators.required]),
+    title: new FormControl("", [Validators.required]),
+    description: new FormControl("", [Validators.required])
     // id: new FormControl(''),
     // date: new FormControl(''),
     // done: new FormControl(false)
-
   });
   tasks: ITask[] = [];
-  constructor(config: NgbModalConfig, private modalService: NgbModal, private taskService: TaskService) {
-    config.backdrop = 'static';
+  constructor(
+    config: NgbModalConfig,
+    private modalService: NgbModal,
+    private taskService: TaskService
+  ) {
+    config.backdrop = "static";
     config.keyboard = false;
 
     // this.form.patchValue({
@@ -36,8 +38,14 @@ export class AddTaskComponent {
   }
 
   onSubmit() {
-    this.taskService.setItem(this.form.value.id, this.form.value.date, this.form.value.done, this.form.value);
+    this.taskService.setItem(
+      this.form.value.id,
+      this.form.value.date,
+      this.form.value.done,
+      this.form.value.progress,
+      this.form.value
+    );
     this.tasks = this.taskService.getItem();
     this.taskService.updateTasks(this.tasks);
-  }  
+  }
 }
