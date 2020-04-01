@@ -88,8 +88,11 @@ export class TaskService {
     let item = this.tasks.find(task => {
       return task.id === id;
     });
+    if (item.progress >= 100) {
+      return;
+    }
     item.progress = item.progress + 10;
-    if (item.progress === 100 && item.done === false) {
+    if (item.progress === 100) {
       item.done = true;
     }
     localStorage.setItem("tasks", JSON.stringify(this.tasks));
@@ -99,8 +102,13 @@ export class TaskService {
     let item = this.tasks.find(task => {
       return task.id === id;
     });
+    if (item.progress <= 0) {
+      return;
+    }
     item.progress = item.progress - 10;
-    console.log(item.progress);
+    if (item.progress < 100) {
+      item.done = false;
+    }
     localStorage.setItem("tasks", JSON.stringify(this.tasks));
     this.updateTasks(this.tasks);
   }

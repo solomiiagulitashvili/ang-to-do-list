@@ -53,10 +53,8 @@ export class TaskItemComponent implements OnInit {
   }
   onAddProgress(id) {
     this.taskService.addProgress(id);
-    console.log(this.task.progress);
   }
   onRemoveProgress(id) {
     this.taskService.removeProgress(id);
-    console.log(this.task.progress);
   }
 }
