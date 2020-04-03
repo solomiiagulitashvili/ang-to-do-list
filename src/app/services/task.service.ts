@@ -7,7 +7,7 @@ import nanoid from "nanoid";
   providedIn: "root"
 })
 export class TaskService {
-  tasks: ITask[];
+  tasks: ITask[] = [];
 
   private tasksSubject = new BehaviorSubject<ITask[]>(
     JSON.parse(localStorage.getItem("tasks"))
