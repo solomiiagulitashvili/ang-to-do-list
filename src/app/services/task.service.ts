@@ -1,4 +1,4 @@
-import { Injectable, Input, OnInit } from "@angular/core";
+import { Injectable, Input, OnInit, Output } from "@angular/core";
 import { ITask } from "../interfaces/task-interface";
 import { BehaviorSubject, Observable } from "rxjs";
 import nanoid from "nanoid";
@@ -8,6 +8,7 @@ import nanoid from "nanoid";
 })
 export class TaskService {
   tasks: ITask[] = [];
+  @Output() id: string;
 
   private tasksSubject = new BehaviorSubject<ITask[]>(
     JSON.parse(localStorage.getItem("tasks"))
