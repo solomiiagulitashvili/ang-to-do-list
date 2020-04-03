@@ -1,6 +1,6 @@
 import { Component, Input, Output, OnInit } from "@angular/core";
 import { ITask } from "src/app/interfaces/task-interface";
-import { TaskService } from "src/app/task.service";
+import { TaskService } from "src/app/services/task.service";
 import { Observable, Subscription } from "rxjs";
 import { ActivatedRoute, Router, Params, UrlSegment } from "@angular/router";
 
@@ -11,24 +11,15 @@ import { ActivatedRoute, Router, Params, UrlSegment } from "@angular/router";
 })
 export class TaskItemComponent implements OnInit {
   @Input() task: ITask;
-  tasks: ITask[];
+  @Output() id: string;
   paramsSubscription: Subscription;
-  id: string;
-  public url: string;
+  url: string;
 
   constructor(
     private taskService: TaskService,
     public route: ActivatedRoute,
     public router: Router
-  ) {
-    // this.task = {
-    //   title: '',
-    //   description: '',
-    //   id: '',
-    //   done: false,
-    //   date: '',
-    // }
-  }
+  ) {}
 
   onDeleteTask(id) {
     this.taskService.deleteTask(id);

@@ -1,5 +1,5 @@
 import { Injectable, Input, OnInit } from "@angular/core";
-import { ITask } from "./interfaces/task-interface";
+import { ITask } from "../interfaces/task-interface";
 import { BehaviorSubject, Observable } from "rxjs";
 import nanoid from "nanoid";
 
@@ -7,14 +7,12 @@ import nanoid from "nanoid";
   providedIn: "root"
 })
 export class TaskService {
-  public tasks: ITask[] = [];
-  constructor() {
-    this.tasks$.subscribe(data => {
-      if (data) {
-        this.tasks = data;
-      }
-    });
-  }
+  tasks: ITask[];
+
+  private tasksSubject = new BehaviorSubject<ITask[]>(
+    JSON.parse(localStorage.getItem("tasks"))
+  );
+  tasks$ = this.tasksSubject.asObservable();
 
   setItem(id, date, done, progress, form) {
     let existantTask = JSON.parse(localStorage.getItem("tasks"));
@@ -35,11 +33,6 @@ export class TaskService {
   getItem() {
     return this.tasks;
   }
-
-  private tasksSubject = new BehaviorSubject<ITask[]>(
-    JSON.parse(localStorage.getItem("tasks"))
-  );
-  tasks$ = this.tasksSubject.asObservable();
 
   updateTasks(tasks) {
     this.tasksSubject.next(tasks);

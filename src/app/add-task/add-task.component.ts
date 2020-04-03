@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { NgbModalConfig, NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { ITask } from "../interfaces/task-interface";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { TaskService } from "../task.service";
+import { TaskService } from "../services/task.service";
 
 @Component({
   selector: "app-add-task",
@@ -14,9 +14,6 @@ export class AddTaskComponent {
   form: FormGroup = new FormGroup({
     title: new FormControl("", [Validators.required]),
     description: new FormControl("", [Validators.required])
-    // id: new FormControl(''),
-    // date: new FormControl(''),
-    // done: new FormControl(false)
   });
   tasks: ITask[] = [];
   constructor(
@@ -26,11 +23,6 @@ export class AddTaskComponent {
   ) {
     config.backdrop = "static";
     config.keyboard = false;
-
-    // this.form.patchValue({
-    //   title: 'title',
-    //   description: 'description',
-    // })
   }
 
   open(content) {
