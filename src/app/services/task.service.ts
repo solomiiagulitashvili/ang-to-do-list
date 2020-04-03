@@ -14,6 +14,13 @@ export class TaskService {
     JSON.parse(localStorage.getItem("tasks"))
   );
   tasks$ = this.tasksSubject.asObservable();
+  constructor() {
+    this.tasks$.subscribe(data => {
+      if (data) {
+        this.tasks = data;
+      }
+    });
+  }
 
   setItem(id, date, done, progress, form) {
     let existantTask = JSON.parse(localStorage.getItem("tasks"));

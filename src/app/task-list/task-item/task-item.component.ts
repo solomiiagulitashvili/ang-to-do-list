@@ -37,6 +37,7 @@ export class TaskItemComponent implements OnInit {
         }
       );
       this.url = this.router.url;
+      console.log(this.task);
     }
   }
   onSaveChanges(id) {
